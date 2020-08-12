@@ -10,7 +10,7 @@
 
 @implementation DVMWeather
 
-- (instancetype)initWithWeatherInfo:(NSInteger)temperature humidity:(NSInteger)humidity windSpeed:(NSInteger)windSpeed
+- (instancetype)initWithWeatherInfo:(NSInteger)temperature humidity:(NSInteger)humidity windSpeed:(float)windSpeed
 {
     self = [super init];
     if (self)
@@ -30,7 +30,7 @@
 {
     NSInteger temperature = [dictionary[@"tp"] intValue];
     NSInteger humidity = [dictionary[@"hu"] intValue];
-    NSInteger windSpeed = [dictionary[@"ws"] floatValue];
+    float windSpeed = [dictionary[@"ws"] floatValue];
     
     return [self initWithWeatherInfo:temperature humidity:humidity windSpeed:windSpeed];
 }
