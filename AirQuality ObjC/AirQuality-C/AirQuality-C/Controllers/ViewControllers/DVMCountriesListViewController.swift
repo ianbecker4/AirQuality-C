@@ -10,36 +10,48 @@ import UIKit
 
 class DVMCountriesListViewController: UIViewController {
     
+    // MARK: - Properties
+    var countries: [String] = [] {
+        didSet {
+            updateTableView()
+        }
+    }
+    
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
-    
-    // MARK: - Properties
-    var countries: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
-        DVMCityAirQualityController.sharedInstance().fetchSupportedCountries { (countries) in
-            DispatchQueue.main.async {
-                
+        DVMCityAirQualityController.fetchSupportedCountries { (countries) in
+            if let countries = countries {
+                self.countries = countries
             }
         }
     }
-    
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toStatesVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                  let destinationVC = segue.destination as? DVMStatesListViewController else { return }
+            
+            let selectedCountry = countries[indexPath.row]
+            
+            destinationVC.country = selectedCountry
+        }
     }
-    */
-
-}
+    
+    // MARK: - Methods
+    func updateTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+} // End of class
 
 extension DVMCountriesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,11 +59,11 @@ extension DVMCountriesListViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "countryCell") else {return UITableViewCell()}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "countryCell", for: indexPath)
         
-        let country = DVMCityAirQualityController.sharedInstance().cityAirQualities[indexPath.row]
+        let country = countries[indexPath.row]
         
-        cell.textLabel?.text = country.country
+        cell.textLabel?.text = country
         
         return cell
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2A079925223DE300359B0E /* DVMCityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A079825223DE300359B0E /* DVMCityDetailsViewController.swift */; };
 		4BCEFB1624E4B2700003F2CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEFB1524E4B2700003F2CC /* AppDelegate.m */; };
 		4BCEFB1924E4B2700003F2CC /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEFB1824E4B2700003F2CC /* SceneDelegate.m */; };
 		4BCEFB1F24E4B2700003F2CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BCEFB1D24E4B2700003F2CC /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B2A079825223DE300359B0E /* DVMCityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVMCityDetailsViewController.swift; sourceTree = "<group>"; };
 		4BCEFB1124E4B2700003F2CC /* AirQuality-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AirQuality-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCEFB1424E4B2700003F2CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BCEFB1524E4B2700003F2CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				4BCEFB3F24E4B4550003F2CC /* AirQuality-C-Bridging-Header.h */,
 				4BCEFB4224E4B58D0003F2CC /* DVMStatesListViewController.swift */,
 				4BCEFB4424E4B5FB0003F2CC /* DVMCitiesListViewController.swift */,
+				4B2A079825223DE300359B0E /* DVMCityDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				4BCEFB3524E4B2FF0003F2CC /* DVMWeather.m in Sources */,
 				4BCEFB2724E4B2720003F2CC /* main.m in Sources */,
 				4BCEFB4524E4B5FB0003F2CC /* DVMCitiesListViewController.swift in Sources */,
+				4B2A079925223DE300359B0E /* DVMCityDetailsViewController.swift in Sources */,
 				4BCEFB1924E4B2700003F2CC /* SceneDelegate.m in Sources */,
 				4BCEFB3824E4B30E0003F2CC /* DVMPollution.m in Sources */,
 				4BCEFB4324E4B58D0003F2CC /* DVMStatesListViewController.swift in Sources */,

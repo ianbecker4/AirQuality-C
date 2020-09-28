@@ -9,22 +9,60 @@
 import UIKit
 
 class DVMStatesListViewController: UIViewController {
+    // MARK: - Properties
+    var country: String?
+    var states: [String] = [] {
+        didSet {
+            updateTableView()
+        }
+    }
 
+    // MARK: - Outlets
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        guard let country = country else { return }
+        DVMCityAirQualityController.fetchSupportedStates(inCountry: country) { (states) in
+            if let states = states {
+                self.states = states
+            }
+        }
+    }
 
-        // Do any additional setup after loading the view.
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCityVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                let country = country,
+                let destinationVC = segue.destination as? DVMCitiesListViewController
+                else { return}
+            let selectedState = states[indexPath.row]
+            destinationVC.country = country
+            destinationVC.state = selectedState
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Class Methods
+    func updateTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
-    */
+}
 
+extension DVMStatesListViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return states.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stateCell", for: indexPath)
+        let state = states[indexPath.row]
+        cell.textLabel?.text = state
+        return cell
+    }
 }

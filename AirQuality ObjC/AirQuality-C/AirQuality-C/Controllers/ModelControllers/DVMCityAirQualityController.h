@@ -13,23 +13,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DVMCityAirQualityController : NSObject
 
-+(instancetype)sharedInstance;
+//+(instancetype)sharedInstance;
 
-@property (nonatomic, copy) NSArray<DVMCityAirQuality *> * cityAirQualities;
+//@property (nonatomic, copy) NSArray<DVMCityAirQuality *> * cityAirQualities;
 
--(void)fetchSupportedCountries: (void(^)(NSArray<NSString*>*))completion;
++(void)fetchSupportedCountries: (void(^)(NSArray<NSString*> *_Nullable))completion;
 
--(void)fetchSupportedStatesInCountry: (NSString *)country
-                          completion: (void(^)(NSArray<NSString*>*))completion;
++(void)fetchSupportedStatesInCountry: (NSString *)country
+                          completion: (void(^)(NSArray<NSString*>*_Nullable))completion;
 
--(void)fetchSupportedCitiesInState: (NSString *)country
-                             state: (NSString *)state
-                        completion: (void(^)(NSArray<NSString*>*))completion;
++(void)fetchSupportedCitiesInState: (NSString *)state
+                           country: (NSString *)country
+                        completion: (void(^)(NSArray<NSString*>*_Nullable))completion;
 
--(void)fetchDataForCity: (NSString *)country
++(void)fetchDataForCity: (NSString *)city
                   state: (NSString *)state
-                   city: (NSString *)city
-             completion: (void(^)(DVMCityAirQuality*))completion;
+                country: (NSString *)country
+             completion: (void(^)(DVMCityAirQuality *_Nullable))completion;
 
 @end
 

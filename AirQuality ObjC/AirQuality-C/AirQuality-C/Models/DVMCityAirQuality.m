@@ -35,8 +35,9 @@
     NSString * city = dictionary[@"city"];
     NSString * state = dictionary[@"state"];
     NSString * country = dictionary[@"country"];
-    DVMWeather * weather = dictionary[@"weather"];
-    DVMPollution * pollution = dictionary[@"pollution"];
+    NSDictionary *currentInfo = dictionary[@"current"];
+    DVMWeather *weather = [[DVMWeather alloc] initWithDictionary:currentInfo[@"weather"]];
+    DVMPollution *pollution = [[DVMPollution alloc] initWithDictionary:currentInfo[@"pollution"]];
     
     return [self initWithCity:city state:state country:country weather:weather pollution:pollution];
 }
